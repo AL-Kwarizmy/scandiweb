@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    font-size: 26px;
+    margin-top: 20px;
+}
+
+.header-hr {
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 5px;
+        font-size: 22px;
+        margin-top: 20px;
+    }
+    .btn-lg {
+        --bs-btn-padding-y: 0.3rem !important;
+        --bs-btn-padding-x: 0.8rem !important;
+        --bs-btn-font-size: 1rem !important;
+    }
+}

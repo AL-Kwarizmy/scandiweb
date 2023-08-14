@@ -1,0 +1,14 @@
+footer hr {
+    margin-top: 15px;
+}
+
+footer div {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+footer div p {
+    font-size: 18px;
+    font-weight: bold;
+}

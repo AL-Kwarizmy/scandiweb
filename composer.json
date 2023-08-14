@@ -1,0 +1,17 @@
+{
+    "name": "mickey/scandiweb",
+    "autoload": {
+        "psr-4": {
+            "": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "MohammedSayed07",
+            "email": "mohammed.s.hegazi@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
