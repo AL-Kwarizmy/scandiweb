@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
+
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="../../styles/general.css">
     <link rel="stylesheet" href="../../styles/header.css">
     <link rel="stylesheet" href="../../styles/product.css">
@@ -11,44 +15,44 @@
 </head>
 
 <body>
-<form method="POST" action="/product/delete">
-<header>
-    <p>
-        Product List
-    </p>
-    <div>
-        <a  class="btn btn-outline-success btn-lg" href="/product/create">
-            <span>ADD</span>
-        </a>
-        <button type="submit" class="btn btn-outline-danger btn-lg mx-3" id="delete-product-btn">MASS DELETE</button>
-    </div>
-</header>
+    <form method="POST" action="/product/delete">
+        <header>
+            <p>
+                Product List
+            </p>
+            <div>
+                <a class="btn btn-primary btn-lg" href="/product/create">
+                    ADD
+                </a>
+                <button type="submit" class="btn btn-secondary btn-lg mx-3" id="delete-product-btn">MASS DELETE</button>
+            </div>
+        </header>
 
-<hr class="header-hr"/>
-<section>
-    <div class="product-list">
-        <?php foreach($data as $product) : ?>
-        <div class="product">
-            <div class="form-check checkbox">
-                <input class="form-check-input delete-checkbox" type="checkbox" name="<?= $product->getSku() ?>" value="<?= $product->getId() ?>">
+        <hr class="header-hr" />
+        <section>
+            <div class="product-list">
+                <?php foreach ($data as $product) : ?>
+                    <div class="product">
+                        <div class="form-check checkbox">
+                            <input class="form-check-input delete-checkbox" type="checkbox" name="<?= $product->getSku() ?>" value="<?= $product->getId() ?>">
+                        </div>
+                        <div class="product-data">
+                            <p><?= $product->getSku() ?></p>
+                            <p><?= $product->getName() ?></p>
+                            <p><?= number_format($product->getPrice(), 2, '.', '') ?> $</p>
+                            <p><?= $product->productDescription() ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <div class="product-data">
-                <p><?= $product->getSku() ?></p>
-                <p><?= $product->getName() ?></p>
-                <p><?= number_format($product->getPrice(), 2, '.', '') ?> $</p>
-                <p><?= $product->productDescription() ?></p>
-            </div>
+        </section>
+    </form>
+    <footer class="footer">
+        <hr />
+        <div>
+            <p>Scandiweb Test assignment</p>
         </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-</form>
-<footer class="footer">
-    <hr/>
-    <div>
-        <p>Scandiweb Test assignment</p>
-    </div>
-</footer>
+    </footer>
 </body>
 
 </html>
