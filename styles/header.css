@@ -4,7 +4,9 @@ header {
     padding: 0 5px;
     font-size: 26px;
     margin-top: 20px;
+    min-height: 20px;
 }
+
 
 .header-hr {
     margin-top: 8px;

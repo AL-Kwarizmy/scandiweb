@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @param $value
+ * @return void
+ */
 function dd($value): void
 {
     echo '<pre>';
@@ -9,7 +13,12 @@ function dd($value): void
     die();
 }
 
-function renderView($view, $data = []): void
+/**
+ * @param $view
+ * @param array $data
+ * @return void
+ */
+function renderView($view, array $data = []): void
 {
     if ($data != null)
     {

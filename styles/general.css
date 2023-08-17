@@ -1,17 +1,7 @@
 body {
-    min-height: 100vh;
-    padding: 0 10px;
+    min-height: 97vh;
     font-family: sans-serif;
-}
-
-header {
-    min-height: 20px;
-}
-
-footer {
-    position: sticky;
-    top: 100%;
-    min-height: 80px;
+    padding: 0 10px;
 }
 
 section {

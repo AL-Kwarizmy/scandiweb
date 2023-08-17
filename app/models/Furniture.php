@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\database\Database;
+use Exception;
 
 class Furniture extends Product
 {
@@ -10,63 +11,70 @@ class Furniture extends Product
     protected int $width;
     protected int $length;
 
-    const TYPE = "Furniture";
-
-    public function setter(array $arr): static
-    {
-        foreach ($arr as $key => $value)
-        {
-            $this->{$key} = $value;
-        }
-
-        return $this;
-    }
-
-    public function create(): void
-    {
-
-        Database::create(parent::TABLE_NAME, [$this->sku, $this->name, $this->price, $this->height, $this->width, $this->length, self::TYPE], $this->getClassPropertiesNames());
-    }
-
+    /**
+     * @return int
+     */
     public function getHeight(): int
     {
         return $this->height;
     }
 
+    /**
+     * @param int $height
+     * @return void
+     */
     public function setHeight(int $height): void
     {
         $this->height = $height;
     }
 
+    /**
+     * @return int
+     */
     public function getWidth(): int
     {
         return $this->width;
     }
 
+    /**
+     * @param int $width
+     * @return void
+     */
     public function setWidth(int $width): void
     {
         $this->width = $width;
     }
 
+    /**
+     * @return int
+     */
     public function getLength(): int
     {
         return $this->length;
     }
 
+    /**
+     * @param int $length
+     * @return void
+     */
     public function setLength(int $length): void
     {
         $this->length = $length;
     }
 
-
+    /**
+     * @return string
+     */
     public function productDescription(): string
     {
         return "Dimension: {$this->height}x{$this->width}x{$this->length}";
     }
 
-    protected function getClassPropertiesNames(): array
+    /**
+     * @return Exception|string|null
+     */
+    public function create(): Exception|string|null
     {
-        return array_keys(get_object_vars($this));
-
+        return Database::create(parent::TABLE_NAME, [$this->sku, $this->name, $this->price, $this->type, $this->height, $this->width, $this->length], $this->getClassPropertiesNames());
     }
 }

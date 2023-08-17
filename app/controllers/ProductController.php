@@ -2,10 +2,15 @@
 
 namespace app\controllers;
 
+use app\core\Validator;
 use app\models\DVD;
 use app\models\Product;
 class ProductController
 {
+
+    /**
+     * @return void
+     */
     public function index(): void
     {
         $products = Product::get();
@@ -18,9 +23,8 @@ class ProductController
                 }
 
             }
+
             $className = "\app\models\\".$product['type'];
-            unset($product['type']);
-            unset($product['id']);
             $object = new $className();
             $object->setter($product);
             return $object;
@@ -29,17 +33,50 @@ class ProductController
         renderView('index', $data);
     }
 
+    /**
+     * @return void
+     */
     public function create(): void
     {
         renderView('create');
     }
 
-    public function store(): void {
+    /**
+     * @return void
+     */
+    public function store(): void
+    {
+        $errors = [];
+        if (!Validator::string($_POST['sku'])) {
+            $errors['skuIsEmpty'] = "* Sku is required and can't be empty";
+            renderView('create', $errors);
+            return;
+        }
+
         $className = "\app\models\\".$_POST['type'];
         $object = new $className;
         $object->setter($_POST);
-        $object->create();
+        $message = $object->create();
+
+        if ($message != null) {
+            $errors['skuIsDuplicated'] = "* Product with the same SKU already exists.";
+            renderView('create', $errors);
+            return;
+        }
 
         header('location: /');
     }
+
+    /**
+     * @return void
+     */
+    public function delete(): void
+    {
+        if ($_POST !== []) {
+            Product::delete($_POST);
+        }
+
+        header("location: /");
+    }
+
 }

@@ -1,14 +1,19 @@
-footer hr {
+.footer {
+    position: sticky;
+    top: 100%;
+    min-height: 60px;
+}
+
+.footer hr {
     margin-top: 15px;
 }
 
-footer div {
+.footer div {
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 15px;
 }
 
-footer div p {
+.footer div p {
     font-size: 18px;
     font-weight: bold;
 }

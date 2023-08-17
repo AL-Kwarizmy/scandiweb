@@ -6,42 +6,38 @@ use app\database\Database;
 
 class Book extends Product
 {
-    const TYPE = 'Book';
     protected float $weight;
 
-    public function productDescription(): string
-    {
-        return "Weight: {$this->weight}KG";
-    }
-
+    /**
+     * @return float
+     */
     public function getWeight(): float
     {
         return $this->weight;
     }
 
+    /**
+     * @param float $weight
+     * @return void
+     */
     public function setWeight(float $weight): void
     {
         $this->weight = $weight;
     }
 
-    public function setter(array $arr): static
+    /**
+     * @return string
+     */
+    public function productDescription(): string
     {
-        foreach ($arr as $key => $value)
-        {
-            $this->{$key} = $value;
-        }
-
-        return $this;
+        return "Weight: {$this->weight}KG";
     }
 
-    protected function getClassPropertiesNames(): array
+    /**
+     * @return \Exception|string|null
+     */
+    public function create(): \Exception|string|null
     {
-        return array_keys(get_object_vars($this));
-
-    }
-
-    public function create(): void
-    {
-        Database::create(parent::TABLE_NAME, [$this->sku, $this->name, $this->price, $this->weight, self::TYPE], $this->getClassPropertiesNames());
+        return Database::create(parent::TABLE_NAME, [$this->sku, $this->name, $this->price, $this->type, $this->weight], $this->getClassPropertiesNames());
     }
 }
